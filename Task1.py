@@ -136,11 +136,11 @@ class RBNGame:
     
         #Both mods are zero
         elif self.num_red >= self.num_blue:
-            self.num_red -= mod_red
-            print(f"Computer removed {mod_red} from red")
+            self.num_red -= 1
+            print(f"Computer removed 1 from red")
         else:
-            self.num_blue -= mod_blue
-            print(f"Computer removed {mod_blue} from blue")
+            self.num_blue -= 1
+            print(f"Computer removed 1 from blue")
 
         self.change_turn()
 
