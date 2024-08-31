@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student</title>
+</head>
+<body>
+    <h2>Create Student</h2>
+    <form action="/create/" method="POST">
+        <label for="ID">ID:</label><br>
+        <input type="number" id="ID" name="ID" required><br><br>
+
+        <label for="FirstName">First Name:</label><br>
+        <input type="text" id="FirstName" name="FirstName" required><br><br>
+
+        <label for="LastName">Last Name:</label><br>
+        <input type="text" id="LastName" name="LastName" required><br><br>
+
+        <label for="CGPA">CGPA:</label><br>
+        <input type="number" id="CGPA" name="CGPA" step="0.01" required><br><br>
+
+        <label for="Address">Address:</label><br>
+        <input type="text" id="Address" name="Address"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

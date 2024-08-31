@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+</head>
+<body>
+    <h2>Update Student Information</h2>
+    <form action="" method="POST">
+        <label for="FirstName">First Name:</label><br>
+        <input type="text" id="FirstName" name="FirstName" value="{{ student['FirstName'] }}" required><br><br>
+
+        <label for="LastName">Last Name:</label><br>
+        <input type="text" id="LastName" name="LastName" value="{{ student['LastName'] }}" required><br><br>
+
+        <label for="CGPA">CGPA:</label><br>
+        <input type="number" id="CGPA" name="CGPA" step="0.01" value="{{ student['CGPA'] }}" required><br><br>
+
+        <label for="Address">Address:</label><br>
+        <input type="text" id="Address" name="Address" value="{{ student['Address'] }}"><br><br>
+
+        <input type="submit" value="Update">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

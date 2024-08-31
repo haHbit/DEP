@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions a, .actions button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-button">
+        <a href="{{ url_for('logout') }}">
+            <button type="button">Logout</button>
+        </a>
+    </div>
+
+    <h2>Students List</h2>
+    
+    <!-- Add Student Button -->
+    <a href="{{ url_for('create') }}">
+        <button type="button">Add Student</button>
+    </a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>CGPA</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student['id'] }}</td>
+                <td>{{ student['FirstName'] }}</td>
+                <td>{{ student['LastName'] }}</td>
+                <td>{{ student['CGPA'] }}</td>
+                <td>{{ student['Address'] }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('update', id=student['id']) }}">Update</a>
+                    <form action="{{ url_for('delete', id=student['id']) }}" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
